@@ -1,38 +1,43 @@
-# Projeto 2 - Docker e Microsserviços (Variante B)
+# Projeto 2 - Docker e Microsserviços
 
-Este repositório implementa os desafios da "Variante B" para o projeto de Docker e Microsserviços.
+Este repositório contém a implementação prática de 5 desafios focados em Docker, Orquestração e Microsserviços.
 
-## Detalhes da Implementação da Variante B
+## Estrutura do Projeto
 
-1.  **Gateway em Nível de Aplicação (Desafio 5):**
-    -   Em vez de usar Nginx, o API Gateway é implementado como uma **Aplicação Python Flask**. Isso fornece flexibilidade para lógica personalizada, autenticação ou transformação no nível do gateway usando código Python padrão.
+O projeto está dividido em pastas independentes para cada desafio, contendo seus próprios arquivos de configuração (`Dockerfile`, `docker-compose.yml`) e documentação específica.
 
-2.  **Persistência Baseada em Arquivo (Desafio 2):**
-    -   Para demonstrar a mecânica de volumes sem a complexidade de sistemas de gerenciamento de banco de dados, utilizamos um **Armazenamento Baseado em Arquivo**. A aplicação grava logs em um arquivo de texto em um volume montado, provando que arquivos em disco sobrevivem aos ciclos de vida dos containers.
+### [Desafio 1: Containers em Rede](./desafio1)
+- Comunicação entre dois contêineres (Cliente/Servidor) via rede bridge customizada.
+- **Tecnologias:** Python, Docker Network.
 
-3.  **Redes:**
-    -   Redes bridge personalizadas (`custom_bridge_v2`, `backend_net`, `microservices_net`, `gateway_net`) são usadas em todo o projeto para isolar ambientes.
+### [Desafio 2: Volumes e Persistência](./desafio2)
+- Demonstração de persistência de dados usando Docker Volumes.
+- **Tecnologias:** Python, Bind Mounts.
 
-## Estrutura
+### [Desafio 3: Orquestração com Docker Compose](./desafio3)
+- Orquestração de uma aplicação Web com Cache (Redis) e Banco de Dados (Postgres).
+- **Tecnologias:** Flask, Redis, Postgres, Docker Compose.
 
--   **desafio1/**: Comunicação de Containers (Servidor/Cliente).
--   **desafio2/**: Persistência de Volume (Logger de Arquivo).
--   **desafio3/**: Orquestração (App + Redis + Postgres).
--   **desafio4/**: Microsserviços (Provedor/Consumidor).
--   **desafio5/**: Padrão API Gateway (Gateway + Usuários + Pedidos).
+### [Desafio 4: Microsserviços Independentes](./desafio4)
+- Comunicação direta HTTP entre dois microsserviços (Provedor e Consumidor).
+- **Tecnologias:** Flask, Requests.
 
-## Início Rápido
+### [Desafio 5: Microsserviços com API Gateway](./desafio5)
+- Implementação de um API Gateway (Nginx) para centralizar acesso a serviços de back-end.
+- **Tecnologias:** Nginx, Flask, Docker Compose.
 
-Navegue até qualquer pasta de desafio e siga o `README.md` local.
+## Pré-requisitos Gerais
 
-**Exemplo (Desafio 5):**
+Para executar os desafios, você precisará ter instalado:
+- **Docker Engine**
+- **Docker Compose** (Geralmente incluído no Docker Desktop ou via plugin `docker compose`).
+
+## Como Navegar
+
+Entre na pasta de cada desafio e leia o arquivo `README.md` local para instruções detalhadas de execução.
+
+Exemplo:
 ```bash
-cd desafio5
-docker-compose up --build
-```
-
-**Exemplo (Desafio 3):**
-```bash
-cd desafio3
-docker-compose up --build
+cd desafio1
+cat README.md
 ```
