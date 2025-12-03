@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  inventory_service:
+    build: ./inventory
+    container_name: inventory_service
+    ports:
+      - "5001:5000"
+    networks:
+      - microservices_net
+
+  summary_service:
+    build: ./summary
+    container_name: summary_service
+    ports:
+      - "5002:5000"
+    environment:
+      - INVENTORY_URL=http://inventory_service:5000/products
+    networks:
+      - microservices_net
+    depends_on:
+      - inventory_service
+
+networks:
+  microservices_net:
+    driver: bridge

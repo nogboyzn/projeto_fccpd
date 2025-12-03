@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # 1. Web Application
+  portal_app:
+    build: .
+    container_name: portal_app
+    ports:
+      - "5000:5000"
+    environment:
+      - REDIS_HOST=session_store
+      - DB_HOST=user_db
+      - DB_NAME=users_db
+      - DB_USER=admin
+      - DB_PASS=securepass123
+    networks:
+      - backend_net
+    depends_on:
+      - session_store
+      - user_db
+
+  # 2. Cache / Session Store
+  session_store:
+    image: redis:alpine
+    container_name: session_store
+    networks:
+      - backend_net
+
+  # 3. Relational Database
+  user_db:
+    image: postgres:13-alpine
+    container_name: user_db
+    environment:
+      - POSTGRES_DB=users_db
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=securepass123
+    networks:
+      - backend_net
+
+networks:
+  backend_net:
+    driver: bridge
+    name: backend_net
