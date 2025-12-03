@@ -1,7 +1,5 @@
 # Projeto 2 - Docker e Microsserviços
 
-Este repositório contém a implementação prática de 5 desafios focados em Docker, Orquestração e Microsserviços.
-
 ## Estrutura do Projeto
 
 O projeto está dividido em pastas independentes para cada desafio, contendo seus próprios arquivos de configuração (`Dockerfile`, `docker-compose.yml`) e documentação específica.
